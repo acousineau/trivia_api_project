@@ -36,6 +36,8 @@ With Postgres running, restore a database using the trivia.psql file provided. F
 psql trivia < trivia.psql
 ```
 
+**IMPORTANT**: If you receive a `role` error when trying to run the above command. You will need to perform a find and replace on the `trivia.psql` file for the role it attempted and replace it with a valid role on your local database.
+
 ## Running the server
 
 From within the `backend` directory first ensure you are working using your created virtual environment.
