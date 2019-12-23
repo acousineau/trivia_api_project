@@ -56,7 +56,6 @@ def create_app(test_config=None):
     return jsonify({
       'success': True,
       'categories': current_categories,
-      'total_categories': len(Category.query.all())
     })
 
   '''
@@ -106,8 +105,6 @@ def create_app(test_config=None):
         abort(404)
         
       question.delete()
-      selection = Question.query.order_by(Question.id).all()
-      current_questions = paginate_questions(request, selection)
 
       return jsonify({
         'success': True,
@@ -196,7 +193,7 @@ def create_app(test_config=None):
     return jsonify({
       'success': True,
       'questions': current_questions,
-      'current_category': current_category.format(),
+      'current_category': current_category.format()['type'],
       'total_questions': len([q for q in questions])
     })
   '''

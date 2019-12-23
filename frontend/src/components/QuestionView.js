@@ -84,29 +84,31 @@ class QuestionView extends Component {
   }
 
   submitSearch = searchTerm => {
-    $.ajax({
-      url: `/api/questions`, //TODO: update request URL
-      type: 'POST',
-      dataType: 'json',
-      contentType: 'application/json',
-      data: JSON.stringify({ searchTerm: searchTerm }),
-      xhrFields: {
-        withCredentials: true
-      },
-      crossDomain: true,
-      success: result => {
-        this.setState({
-          questions: result.questions,
-          totalQuestions: result.total_questions,
-          currentCategory: result.current_category
-        })
-        return
-      },
-      error: error => {
-        alert('Unable to load questions. Please try your request again')
-        return
-      }
-    })
+    if (searchTerm) {
+      $.ajax({
+        url: `/api/questions`, //TODO: update request URL
+        type: 'POST',
+        dataType: 'json',
+        contentType: 'application/json',
+        data: JSON.stringify({ searchTerm: searchTerm }),
+        xhrFields: {
+          withCredentials: true
+        },
+        crossDomain: true,
+        success: result => {
+          this.setState({
+            questions: result.questions,
+            totalQuestions: result.total_questions,
+            currentCategory: result.current_category
+          })
+          return
+        },
+        error: error => {
+          alert('Unable to load questions. Please try your request again')
+          return
+        }
+      })
+    }
   }
 
   questionAction = id => action => {
